@@ -9,7 +9,7 @@ model = tf.keras.models.load_model('model.h5')
 model.trainable = False
 print(model.summary())
 
-from_dir = 'more_data/401/'
+from_dir = 'more_data/1000/'
 to_dir = 'temp/'
 img_list = []
 for root, dirs, files in os.walk(from_dir):
