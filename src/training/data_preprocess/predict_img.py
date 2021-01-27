@@ -9,13 +9,19 @@ model = tf.keras.models.load_model('model.h5')
 model.trainable = False
 print(model.summary())
 
-from_dir = 'more_data/1000/'
+from_dir = 'more_data/2000/'
 to_dir = 'temp/'
 img_list = []
-for root, dirs, files in os.walk(from_dir):
+for root, _, files in os.walk(from_dir):
     if root == from_dir:
         img_list.extend([root+f for f in files])
-
+        
+existing_dir = 'full_len_data/'
+exist_list = []
+for root, _, files in os.walk(existing_dir):
+    if root == existing_dir:
+        exist_list.extend([f[:-4] for f in files])
+    
 for img in img_list:
     colorful_img = cv2.imread(img)
     img = cv2.imread(img, 0)
@@ -29,5 +35,8 @@ for img in img_list:
         out = model.predict(crop)
         label += encoding[tf.math.argmax(out, axis=1).numpy()[0]]
     print(label)
+    if label in exist_list:
+        print('repeated')
+        continue
     cv2.imwrite(to_dir+label+'.bmp', colorful_img)
 
