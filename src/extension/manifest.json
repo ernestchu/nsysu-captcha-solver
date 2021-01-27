@@ -2,7 +2,6 @@
     "name": "車管會還我錢",
     "version": "1.0",
     "description": "幫助你省一秒去救車的工具",
-    "permissions": ["activeTab"],
     "icons": {
         "16": "icons/get_started16.png",
         "32": "icons/get_started32.png",
