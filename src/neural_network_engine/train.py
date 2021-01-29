@@ -16,7 +16,7 @@ with open(labels_file, newline='') as csvfile:
     for row in reader:
         img_list.append(row[fieldnames[0]])
         label_list.append(encoding.index(row[fieldnames[1]]))
-    
+
 items=[]
 for i in range(len(img_list)):
     items.append(i)
@@ -27,7 +27,7 @@ for i in random.sample(items,len(img_list)):
     img = tf.keras.preprocessing.image.img_to_array(img)
     X.append(img)
     y.append(label_list[i])
-    
+
 X = 1 - np.array(X).astype(float)/255 # invert and scale
 y = np.array(y).astype(float)
 
@@ -54,15 +54,15 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
     decay_rate=0.9,
 )
 model.compile(
-    loss=tf.keras.losses.SparseCategoricalCrossentropy(), 
-    optimizer=tf.keras.optimizers.Adam(learning_rate=lr_schedule), 
+    loss=tf.keras.losses.SparseCategoricalCrossentropy(),
+    optimizer=tf.keras.optimizers.Adam(learning_rate=lr_schedule),
     metrics=[tf.keras.metrics.SparseCategoricalAccuracy()]
 )
 batch_size = 32
 epochs = 80
 
 model.fit(
-    X, 
+    X,
     y,
     batch_size = batch_size,
     epochs = epochs,
@@ -71,4 +71,4 @@ model.fit(
 )
 
 import tensorflowjs as tfjs
-tfjs.converters.save_keras_model(model, 'model.json')
+tfjs.converters.save_keras_model(model, 'outputs/model_tfjs')
