@@ -4,24 +4,37 @@ import csv
 import numpy as np
 import tensorflow as tf
 
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument('model', help='tensorflow model output .h5')
+parser.add_argument('src_dir', help='directory contains images to be predicted')
+parser.add_argument('dst_dir', help='output directory')
+args = parser.parse_args()
+
 encoding = '123456789'
-model = tf.keras.models.load_model('model.h5')
+model = tf.keras.models.load_model(args.model);
 model.trainable = False
 print(model.summary())
 
-from_dir = 'more_data/3001/'
-to_dir = 'full_len_data/'
+from_dir = args.src_dir
+to_dir = args.dst_dir
+if from_dir[-1] != '/':
+    from_dir+='/'
+if to_dir[-1] != '/':
+    to_dir+='/'
+
+
 img_list = []
 for root, _, files in os.walk(from_dir):
     if root == from_dir:
         img_list.extend([root+f for f in files])
-        
-existing_dir = 'full_len_data/'
+
+existing_dir = args.dst_dir
 exist_list = []
 for root, _, files in os.walk(existing_dir):
     if root == existing_dir:
         exist_list.extend([f[:-4] for f in files])
-    
+
 for img in img_list:
     colorful_img = cv2.imread(img)
     img = cv2.imread(img, 0)
@@ -39,4 +52,3 @@ for img in img_list:
         print('repeated')
         continue
     cv2.imwrite(to_dir+label+'.bmp', colorful_img)
-

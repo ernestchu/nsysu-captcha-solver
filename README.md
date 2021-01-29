@@ -29,6 +29,15 @@ Captcha solver across websites under [selcrs.nsysu.edu.tw](https://selcrs.nsysu.
         ├── train.py
         └── train_demo.ipynb
 ```
+## Usage
+### Chrome extension
+The extension is currently pending review, however you can download [extension_chrome](src/extension_chrome) and use it in the developer mode.
+### Safari extension
+Currently under construction.
+
+## Train backend CNN engine
+1. Prepare your training images and place them under 
+
 ## Thanks
 Special thanks to
 - [楊志璿](https://github.com/25077667) For data collection
