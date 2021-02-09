@@ -40,7 +40,7 @@
 1. 將原始尺寸的訓練資料放置 [full_len_data](src/neural_network_engine/data_preprocessing/full_len_data)
 2. 使用 [split_img.py](src/neural_network_engine/data_preprocessing/split_img.py) 切割影像以利辨識，並產生標註檔 [labels.csv](src/neural_network_engine/labels.csv). 切割後的影像預設輸出至 [dataset](src/neural_network_engine/dataset).
 3. 使用 [train.py](src/neural_network_engine/train.py) 訓練神經網路, 訓練好的目標會在 [outputs](src/neural_network_engine/outputs).
-4. 此插件目前使用的已訓練模型目前放置在 [ernestchu.github.io](https://ernestchu.github.io/files/nsysu-captcha-solver/model_tfjs/model.json)
+4. 此插件目前使用的已訓練模型目前放置在 [ernestchu.github.io](https://ernestchu.github.io/nsysu-captcha-solver/assets/model_tfjs/model.json)
 
 ## 感謝
 特別感謝

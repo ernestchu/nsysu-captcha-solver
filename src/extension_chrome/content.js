@@ -33,7 +33,7 @@ async function fill(img) {
 
 
 console.log("Script properly injected into page");
-const model_promise = tf.loadLayersModel('https://ernestchu.github.io/files/nsysu-captcha-solver/model_tfjs/model.json');
+const model_promise = tf.loadLayersModel('https://ernestchu.github.io/nsysu-captcha-solver/assets/model_tfjs/model.json');
 const encoding = '123456789';
 const t = document.querySelector('frame[name="qryheader"]');
 var website = false; // any website else
