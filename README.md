@@ -32,7 +32,7 @@ Captcha solver across websites under [selcrs.nsysu.edu.tw](https://selcrs.nsysu.
 ```
 ## Usage
 ### Chrome extension
-The extension is currently pending review, however you can download [extension_chrome](src/extension_chrome) and use it in the developer mode.
+Effective immediately after installation
 ### Safari extension
 Currently under construction.
 
