@@ -1,11 +1,12 @@
 #include "proc.hpp"
 #include <fstream>
-#include <iostream>
-#include <string_view>
-#include <random>
 #include <functional>
-#include <utility>
+#include <iostream>
+#include <random>
 #include <sstream>
+#include <string_view>
+#include <utility>
+const int THRESHOLD = 150;
 
 static std::string rand_name()
 {
@@ -34,8 +35,26 @@ Bitmap_image loader(const std::vector<char> &bin_bmp)
 
 Bitmap_image spreader(Bitmap_image img)
 {
-    img.convert_to_grayscale();
-    img.invert_color_planes();
+    const auto [wid, hei] = std::make_pair(img.width(), img.height());
+    double *resp_img = new double[wid * hei];
+    img.export_gray_scale_response_image(resp_img);
+    for (size_t i = 0; i < hei; i++)
+        for (size_t j = 0; j < wid; j++) {
+            auto avg =
+                ((resp_img[((i - 1) % hei) * wid + (j - 1) % wid] +
+                  resp_img[((i - 1) % hei) * wid + j] +
+                  resp_img[((i - 1) % hei) * wid + (j + 1) % wid]) +
+                 (resp_img[i * wid + (j - 1) % wid] + resp_img[i * wid + j] +
+                  resp_img[i * wid + (j + 1) % wid]) +
+                 (resp_img[((i + 1) % hei) * wid + (j - 1) % wid] +
+                  resp_img[((i + 1) % hei) * wid + j] +
+                  resp_img[((i + 1) % hei) * wid + (j + 1) % wid])) /
+                9.0 * 256.0;
+            char spr = (avg > THRESHOLD) ? 255 : 0;
+            img.set_pixel(j, i, spr, spr, spr);
+        }
+
+    delete[] resp_img;
     return img;
 }
 
