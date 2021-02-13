@@ -33,7 +33,7 @@ Bitmap_image loader(const std::vector<char> &bin_bmp)
     return Bitmap_image(gen_name);
 }
 
-Bitmap_image spreader(Bitmap_image img)
+static inline void _spreader(Bitmap_image &img)
 {
     const auto [wid, hei] = std::make_pair(img.width(), img.height());
     double *resp_img = new double[wid * hei];
@@ -55,6 +55,11 @@ Bitmap_image spreader(Bitmap_image img)
         }
 
     delete[] resp_img;
+}
+
+Bitmap_image spreader(Bitmap_image img)
+{
+    _spreader(img);
     return img;
 }
 
@@ -68,4 +73,19 @@ std::string saver(const Bitmap_image &img)
     std::string filename(rand_name());
     saver(img, filename);
     return filename;
+}
+
+
+std::string f_anti_noise(const std::vector<char> &bin_bmp)
+{
+    auto img = loader(bin_bmp);
+    _spreader(img);
+    return saver(img);
+}
+
+std::string f_anti_noise(const std::string &filename)
+{
+    Bitmap_image img(filename);
+    _spreader(img);
+    return saver(img);
 }
