@@ -14,7 +14,7 @@
 	"content_scripts": [
     	    {
       		"matches": ["*://selcrs.nsysu.edu.tw/*"],
-		"run_at": "document_idle",
+			"run_at": "document_idle",
       		"js": ["tf.min.js", "content.js"]
     	    }
   	]
