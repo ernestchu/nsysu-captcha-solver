@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"name": "車管會還我錢",
+	"version": "1.0.1",
+
+	"description": "幫助你省一秒去救車的工具",
+	"icons": {
+        	"16": "icons/get_started16.png",
+        	"32": "icons/get_started32.png",
+        	"48": "icons/get_started48.png",
+        	"128": "icons/get_started128.png"
+    	},
+
+	"content_scripts": [
+    	    {
+      		"matches": ["*://selcrs.nsysu.edu.tw/*"],
+		"run_at": "document_idle",
+      		"js": ["tf.min.js", "content.js"]
+    	    }
+  	]
+}
