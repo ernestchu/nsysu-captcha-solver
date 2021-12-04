@@ -10,6 +10,10 @@
         	"48": "icons/get_started48.png",
         	"128": "icons/get_started128.png"
     	},
+		
+	"permissions": [
+		"https://ernestchu.github.io/nsysu-captcha-solver/assets/model_tfjs/model.json"
+	],
 
 	"content_scripts": [
     	    {
