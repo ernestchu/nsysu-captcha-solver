@@ -3,8 +3,6 @@ Captcha solver across websites under [selcrs.nsysu.edu.tw](https://selcrs.nsysu.
 ### [Chrome extension](https://chrome.google.com/webstore/detail/%E8%BB%8A%E7%AE%A1%E6%9C%83%E9%82%84%E6%88%91%E9%8C%A2/naodomfadjejcbhdhnhpoffjjiljmnch?hl=en-US&authuser=0)
 ![](https://media.giphy.com/media/1rX8IEL6WCd7gne9cm/giphy.gif)
 
-[Chinese README](README.zh_tw.md)
-
 ## Todo
 - [X] Chrome extension
 - [X] Firefox extension
